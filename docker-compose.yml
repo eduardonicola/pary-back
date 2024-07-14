@@ -7,23 +7,19 @@ services:
       POSTGRES_USER: ${DATABASE_USER}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
       POSTGRES_DB: ${DATABASE_NAME}
-    command: >
-      sh -c "echo POSTGRES_USER=$$DATABASE_USER &&
-             echo POSTGRES_PASSWORD=$$DATABASE_PASSWORD &&
-             echo POSTGRES_DB=$$DATABASE_NAME && sleep 3600"
     ports:
       - "5432:5432"
     networks:
       - pary-nest-network
     env_file:
-      - ./.env.dev
+      - ./.env
 
   nestjs:
     build:
       context: .
       dockerfile: nest.Dockerfile
     env_file:
-      - ./.env.dev
+      - ./.env
     container_name: nest-back
     environment:
       DATABASE_HOST: ${DATABASE_HOST}
