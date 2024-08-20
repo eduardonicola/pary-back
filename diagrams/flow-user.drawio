@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="jn-Cg3QizQ3yQqAr4hrQ" name="Page-1">
-        <mxGraphModel dx="964" dy="1830" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="283" dy="1331" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -306,18 +306,18 @@
                 <mxCell id="143" value="" style="edgeStyle=none;html=1;fontColor=#FFFFFF;exitX=0.999;exitY=0.677;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.013;entryY=0.596;entryDx=0;entryDy=0;entryPerimeter=0;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" source="138" target="142" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="131" value="&lt;font color=&quot;#000000&quot;&gt;Informações que o owner especifica para a gestão&lt;/font&gt; &lt;b&gt;&lt;font color=&quot;#009900&quot;&gt;COA&lt;/font&gt;&lt;/b&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
+                <mxCell id="131" value="Informações que o owner especifica para a gestão &lt;b&gt;COA&lt;/b&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
                     <mxGeometry x="1509" y="740" width="180" height="180" as="geometry">
                         <mxRectangle x="1410" y="720" width="310" height="60" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="138" value="&lt;font color=&quot;#000000&quot;&gt;Pode gerenciar o financeiro do evento&lt;/font&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="131" vertex="1">
+                <mxCell id="138" value="Pode gerenciar o financeiro do evento" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="131" vertex="1">
                     <mxGeometry y="60" width="180" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="139" value="&lt;font color=&quot;#000000&quot;&gt;Pode gerenciar convites&lt;/font&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="131" vertex="1">
+                <mxCell id="139" value="Pode gerenciar convites" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="131" vertex="1">
                     <mxGeometry y="100" width="180" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="134" value="&lt;font color=&quot;#000000&quot;&gt;Pode gerenciar level de convidados&lt;/font&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="131" vertex="1">
+                <mxCell id="134" value="Pode gerenciar level de convidados" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="131" vertex="1">
                     <mxGeometry y="140" width="180" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="137" value="&lt;h1&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;font color=&quot;#009900&quot;&gt;COA&lt;/font&gt;&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 12px; text-align: center; font-weight: normal;&quot;&gt;Co-anfitrião/Affiliated&lt;/span&gt;&lt;br&gt;&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
@@ -326,31 +326,31 @@
                 <mxCell id="140" value="Pode deletar Eventos" style="whiteSpace=wrap;html=1;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
                     <mxGeometry x="1130" y="380" width="120" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="142" value="&lt;font color=&quot;#000000&quot;&gt;Gere a lista de gastos e o tipo de divisão&lt;/font&gt;" style="whiteSpace=wrap;html=1;fontColor=#FFFFFF;fontStyle=0;startSize=60;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
+                <mxCell id="142" value="Gere a lista de gastos e o tipo de divisão" style="whiteSpace=wrap;html=1;fontColor=#FFFFFF;fontStyle=0;startSize=60;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
                     <mxGeometry x="1724" y="740" width="120" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="220" style="edgeStyle=none;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;fontColor=#FFFFFF;" parent="1" source="148" target="219" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="148" value="&lt;font color=&quot;#1a1a1a&quot;&gt;Pode criar Links de convite&lt;/font&gt;" style="whiteSpace=wrap;html=1;fontColor=#FFFFFF;fontStyle=0;startSize=60;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
+                <mxCell id="148" value="Pode criar Links de convite" style="whiteSpace=wrap;html=1;fontColor=#FFFFFF;fontStyle=0;startSize=60;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
                     <mxGeometry x="1724" y="815" width="120" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="149" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" source="139" target="148" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="151" value="&lt;font color=&quot;#000000&quot;&gt;Pode dar level &lt;/font&gt;&lt;font color=&quot;#00cc00&quot;&gt;&lt;b&gt;COA&lt;/b&gt;&lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt; para outros convidados&amp;nbsp;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fontColor=#FFFFFF;fontStyle=0;startSize=60;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
+                <mxCell id="151" value="Pode dar level &lt;b&gt;&lt;font color=&quot;#33ff33&quot;&gt;COA&lt;/font&gt;&lt;/b&gt; para outros convidados&amp;nbsp;" style="whiteSpace=wrap;html=1;fontColor=#FFFFFF;fontStyle=0;startSize=60;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
                     <mxGeometry x="1910" y="875" width="120" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="157" style="edgeStyle=none;html=1;fontColor=#00CC00;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" source="154" target="151" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="154" value="&lt;font color=&quot;#000000&quot;&gt;Essa permisão acompanha as demais da lista&amp;nbsp;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fontColor=#FFFFFF;fontStyle=0;startSize=60;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
+                <mxCell id="154" value="Essa permisão acompanha as demais da lista&amp;nbsp;" style="whiteSpace=wrap;html=1;fontColor=#FFFFFF;fontStyle=0;startSize=60;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
                     <mxGeometry x="1730" y="885" width="120" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="155" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontColor=#00CC00;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" source="134" target="154" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="158" value="&lt;font color=&quot;#000000&quot;&gt;Pode participar&amp;nbsp;&lt;br style=&quot;&quot;&gt;de Eventos&amp;nbsp;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontColor=#00CC00;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
+                <mxCell id="158" value="&lt;font color=&quot;#ffffff&quot;&gt;Pode participar&amp;nbsp;&lt;br style=&quot;&quot;&gt;de Eventos&amp;nbsp;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontColor=#00CC00;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
                     <mxGeometry x="1339" y="520" width="120" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="173" style="edgeStyle=none;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;" parent="1" source="168" target="158" edge="1">
@@ -482,8 +482,11 @@
                 <mxCell id="128" value="&lt;font color=&quot;#f0f0f0&quot;&gt;Apos um convidado acitar o link&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontColor=#0000CC;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
                     <mxGeometry x="1270" y="660" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="219" value="&lt;font color=&quot;#000000&quot;&gt;Pode remover convidados&lt;/font&gt;" style="whiteSpace=wrap;html=1;fontColor=#FFFFFF;fontStyle=0;startSize=60;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
+                <mxCell id="219" value="Pode remover convidados" style="whiteSpace=wrap;html=1;fontColor=#FFFFFF;fontStyle=0;startSize=60;rounded=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
                     <mxGeometry x="1900" y="810" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="221" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNNiA0MnYtOC40bDE4Ljg1LTE4Ljg1LTMuNi0zLjZMMjMuMyA5LjFsNC42IDQuNkwzNSA2LjZxLjU1LS41NSAxLjE3NS0uNTV0MS4xNzUuNTVsNC4wNSA0LjA1cS41NS41NS41NSAxLjE3NVQ0MS40IDEzbC03LjEgNy4xIDQuNiA0LjYtMi4wNSAyLjA1LTMuNi0zLjZMMTQuNCA0MlptMy0zaDQuMzVMMzEuMSAyMS4yNWwtNC4zNS00LjM1TDkgMzQuNjVabTIzLjE1LTIxIDYuMi02LjItMi4xNS0yLjE1LTYuMiA2LjJabTAgMEwzMCAxNS44NSAzMi4xNSAxOFoiLz48L3N2Zz4=;" vertex="1" parent="1">
+                    <mxGeometry width="48" height="48" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
