@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -39,11 +38,11 @@ enum TypeAdditional {
 
 // Modelos
 model Event {
-  uuid_event    String    @id @default(uuid()) @db.VarChar(36)
-  name          String    @db.VarChar(255)
-  locate        String    @db.VarChar(255)
+  uuid_event    String         @id @default(uuid()) @db.VarChar(36)
+  name          String         @db.VarChar(255)
+  locate        String         @db.VarChar(255)
   date_and_time DateTime
-  description   String?   @db.Text
+  description   String?        @db.Text
   type_division TypeDivision
   users         UserHasEvent[]
   spents        Spent[]
@@ -51,23 +50,23 @@ model Event {
 }
 
 model User {
-  uuid_user String    @id @default(uuid()) @db.VarChar(36)
-  name      String    @db.VarChar(255)
-  phone     String    @db.VarChar(15)
-  email     String    @db.VarChar(255)
-  events    UserHasEvent[]
+  uuid_user   String         @id @default(uuid()) @db.VarChar(36)
+  name        String         @db.VarChar(255)
+  phone       String         @db.VarChar(15)
+  email       String         @db.VarChar(255)
+  events      UserHasEvent[]
   additionals Additional[]
 }
 
 model Spent {
-  uuid_spent   String  @id @default(uuid()) @db.VarChar(36)
-  name         String  @db.VarChar(255)
-  description  String? @db.Text
-  value        Decimal @db.Decimal(10, 2)
-  amount       Int
-  type_spent   TypeSpent
-  event        Event   @relation(fields: [eventId], references: [uuid_event])
-  eventId      String  @db.VarChar(36)
+  uuid_spent  String    @id @default(uuid()) @db.VarChar(36)
+  name        String    @db.VarChar(255)
+  description String?   @db.Text
+  value       Decimal   @db.Decimal(10, 2)
+  amount      Int
+  type_spent  TypeSpent
+  event       Event     @relation(fields: [eventId], references: [uuid_event], onDelete: Cascade)
+  eventId     String    @db.VarChar(36)
 }
 
 model UserHasEvent {
@@ -75,9 +74,9 @@ model UserHasEvent {
   uuid_user  String    @db.VarChar(36)
   uuid_event String    @db.VarChar(36)
   user_level UserLevel
-  user       User      @relation(fields: [uuid_user], references: [uuid_user])
-  event      Event     @relation(fields: [uuid_event], references: [uuid_event])
-  
+  user       User      @relation(fields: [uuid_user], references: [uuid_user], onDelete: Cascade)
+  event      Event     @relation(fields: [uuid_event], references: [uuid_event], onDelete: Cascade)
+
   @@unique([uuid_user, uuid_event])
 }
 
@@ -88,6 +87,5 @@ model Additional {
   uuid_user        String         @db.VarChar(36)
   uuid_event       String         @db.VarChar(36)
   user             User           @relation(fields: [uuid_user], references: [uuid_user])
-  event            Event          @relation(fields: [uuid_event], references: [uuid_event])
+  event            Event          @relation(fields: [uuid_event], references: [uuid_event], onDelete: Cascade)
 }
-
