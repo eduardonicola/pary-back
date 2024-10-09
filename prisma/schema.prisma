@@ -43,7 +43,7 @@ model Event {
   locate        String         @db.VarChar(255)
   date_and_time DateTime
   description   String?        @db.Text
-  type_division TypeDivision
+  egalitarian   Boolean        @default(true)
   users         UserHasEvent[]
   spents        Spent[]
   additionals   Additional[]
@@ -52,9 +52,9 @@ model Event {
 model User {
   uuid_user   String         @id @default(uuid()) @db.VarChar(36)
   name        String         @db.VarChar(255)
-  passsword   String         @db.VarChar(255)
+  password   String         @db.VarChar(255)
   phone       String         @db.VarChar(15)
-  email       String         @db.VarChar(255)
+  email       String         @unique @db.VarChar(255) 
   events      UserHasEvent[]
   additionals Additional[]
 }
