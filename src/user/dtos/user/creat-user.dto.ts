@@ -1,4 +1,4 @@
-// src/user/dto/create-user.dto.ts
+
 import {
   IsEmail,
   IsNotEmpty,
@@ -7,7 +7,7 @@ import {
   IsPhoneNumber,
 } from 'class-validator';
 
-import { password, name, email, phone } from './creat-user-rules';
+import { password, name, email, phone } from '../rules/user-rules';
 import { Transform } from 'class-transformer';
 
 export class CreateUserDto {

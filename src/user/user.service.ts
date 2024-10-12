@@ -1,17 +1,20 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Prisma, User } from '@prisma/client';
-import { CreateUserDto } from './dtos/creat-user.dto';
+import { CreateUserDto } from './dtos/user/creat-user.dto';
 import * as bcrypt from 'bcrypt';
+import { UpdateUserDto } from './dtos/user/update-user.dto';
+import { MessageStatus } from './dtos/responses/router-user';
+import { UserAplicationClient } from './dtos/user/userClient.dto';
+import { plainToInstance, TransformPlainToInstance } from 'class-transformer';
 
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
-  async create(data: CreateUserDto): Promise<User> {
+  async create(data: CreateUserDto): Promise<MessageStatus> {
     const hashPassword = await bcrypt.hash(data.password, 10);
 
-    return await this.prisma.user
+    await this.prisma.user
       .create({
         data: {
           ...data,
@@ -24,16 +27,42 @@ export class UserService {
         }
         throw error;
       });
+
+    return new MessageStatus('Usuaior criado com sucesso');
   }
 
-  async getUser(uuid_user: string): Promise<User | null> {
-    return this.prisma.user.findUnique({ where: { uuid_user } });
+  async getUser(uuid_user: string,): 
+    Promise<UserAplicationClient | MessageStatus> {
+      const user = await this.prisma.user.findUnique({
+        where: { uuid_user },
+        select: {
+          uuid_user: true,
+          name: true,
+          phone: true,
+          email: true,
+          password: false,
+        },
+      });
+      if (user) {
+        return user;
+      }
+      throw new NotFoundException('Usuário não encontrado');;
   }
 
-  async updateUser(
-    uuid_user: string,
-    data: Prisma.UserUpdateInput,
-  ): Promise<User> {
-    return this.prisma.user.update({ where: { uuid_user }, data });
+  async updateUser(uuid_user: string, data: UpdateUserDto): Promise<UserAplicationClient | MessageStatus> {
+
+    try {
+      const user = await this.prisma.user.update({ where: { uuid_user }, data })  
+
+      return plainToInstance(UserAplicationClient, user, { excludeExtraneousValues: true });
+    } catch (error) {
+      if (error.code === 'P2025') {
+        throw new NotFoundException('Usuário não encontrado');
+      }
+      throw new HttpException(
+        'Erro ao atualizar o usuário',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 }
