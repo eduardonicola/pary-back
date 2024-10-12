@@ -1,8 +1,17 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { env } from 'process';
 
+/**
+ * Bootstraps the NestJS application by creating an instance of the `AppModule` and starting the server on the specified port.
+ *
+ * This function is the entry point of the application and is responsible for initializing the NestJS application and starting the server.
+ *
+ * @returns {Promise<void>} A promise that resolves when the server has started listening for incoming requests.
+ */
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  await app.listen(env.SERVICE_PORT, env.SERVICE_HOST);
+  console.log(`\x1b[32mApplication is running on: ${await app.getUrl()}\x1b[0m`);
 }
 bootstrap();
