@@ -23,7 +23,8 @@ const email = {
 }
 const phone = {
   required:{ message: 'O número de telefone é obrigatório' },
-  matchRegex: { message: 'O número de telefone deve ser válido em formato internacional' }
+  matchRegex: { message: 'O número de telefone deve ser válido em formato internacional' },
+  format: ({value}) => value.replace(/\s+/g, '')
 }
 
 export { password, name , email, phone};

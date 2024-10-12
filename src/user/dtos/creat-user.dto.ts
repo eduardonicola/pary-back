@@ -8,22 +8,25 @@ import {
 } from 'class-validator';
 
 import { password, name, email, phone } from './creat-user-rules';
+import { Transform } from 'class-transformer';
 
 export class CreateUserDto {
-  @IsNotEmpty(name.required)
   @IsString()
+  @IsNotEmpty(name.required)
   name: string;
 
   @IsEmail({}, email.matchRegex)
   @IsNotEmpty(email.required)
   email: string;
 
+  @IsString()
   @IsNotEmpty(password.required)
   @IsStrongPassword(password.regex, password.matchRegex)
   password: string;
 
+  @IsString()
   @IsNotEmpty(phone.required)
   @IsPhoneNumber(null, phone.matchRegex)
-  @IsString()
+  @Transform(phone.format)
   phone: string;
 }
