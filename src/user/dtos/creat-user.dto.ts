@@ -1,24 +1,29 @@
 // src/user/dto/create-user.dto.ts
-import { IsEmail, IsNotEmpty, MinLength, IsString, Matches } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsString,
+  IsStrongPassword,
+  IsPhoneNumber,
+} from 'class-validator';
+
+import { password, name, email, phone } from './creat-user-rules';
 
 export class CreateUserDto {
-  @IsNotEmpty({ message: 'O nome é obrigatório' })
+  @IsNotEmpty(name.required)
   @IsString()
   name: string;
 
-  @IsEmail({}, { message: 'Forneça um e-mail válido' })
-  @IsNotEmpty({ message: 'O e-mail é obrigatório' })
+  @IsEmail({}, email.matchRegex)
+  @IsNotEmpty(email.required)
   email: string;
 
-  @IsNotEmpty({ message: 'A senha é obrigatória' })
-  @MinLength(6, { message: 'A senha deve ter no mínimo 6 caracteres' })
-  @Matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/, {
-    message: 'A senha deve ter no mínimo 6 caracteres, contendo letras e números',
-  })
+  @IsNotEmpty(password.required)
+  @IsStrongPassword(password.regex, password.matchRegex)
   password: string;
 
-  @IsNotEmpty({ message: 'O número de telefone é obrigatório' })
-  @MinLength(11, { message: 'O número de telefone deve ter no mínimo 11 dígitos' })
+  @IsNotEmpty(phone.required)
+  @IsPhoneNumber(null, phone.matchRegex)
   @IsString()
   phone: string;
 }
