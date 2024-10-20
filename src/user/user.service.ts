@@ -3,7 +3,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dtos/user/creat-user.dto';
 import * as bcrypt from 'bcrypt';
 import { UpdateUserDto } from './dtos/user/update-user.dto';
-import { MessageStatus } from './dtos/responses/router-user';
+import { MessageStatus } from '../responses/router';
 import { UserAplicationClient } from './dtos/user/userClient.dto';
 import { plainToInstance, TransformPlainToInstance } from 'class-transformer';
 

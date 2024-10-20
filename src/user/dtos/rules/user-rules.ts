@@ -1,4 +1,3 @@
-import { ConflictException } from '@nestjs/common';
 
 const password = {
   required: { message: 'A senha é obrigatória' },

@@ -3,7 +3,7 @@ import { UserService } from './user.service';
 import { User } from '@prisma/client';
 import { CreateUserDto } from './dtos/user/creat-user.dto';
 import { UpdateUserDto } from './dtos/user/update-user.dto';
-import { MessageStatus } from './dtos/responses/router-user';
+import { MessageStatus } from '../responses/router';
 import { UserAplicationClient } from './dtos/user/userClient.dto';
 
 @Controller('user')
