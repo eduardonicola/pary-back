@@ -18,6 +18,7 @@ enum TypeSpent {
   dink
   food_omnivorous
   food_vegan
+  location
 }
 
 enum UserLevel {
