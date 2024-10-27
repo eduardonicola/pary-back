@@ -5,11 +5,13 @@ import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
 import { EventModule } from './event/event.module';
+import { SpentModule } from './spent/spent.module';
 @Module({
   imports: [
     PrismaModule,
     UserModule,
     EventModule,
+    SpentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
