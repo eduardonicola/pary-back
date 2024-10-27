@@ -1,0 +1,21 @@
+meta {
+  name: Updata user
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{svc-back}}/event/0e92e0a5-6599-45cf-81bf-e8f96902162f
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name":"teste event",
+    "locate":"Rua P nicola N 371",
+    "date_and_time": "2024-10-31T12:30:00.000Z",
+    "description": "uma efewfwefwefew generia",
+    "egalitarian": false
+  }
+}

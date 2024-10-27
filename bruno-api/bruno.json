@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "pary-back",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

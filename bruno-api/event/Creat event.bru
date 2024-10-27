@@ -1,0 +1,21 @@
+meta {
+  name: Creat event
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{svc-back}}/event
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+     "name":"teste event",
+    "locate":"Rua P nicola N 371",
+    "date_and_time": "2024-10-31T12:30:00.000Z",
+    "description": "uma descrição generia",
+    "egalitarian": true
+  }
+}

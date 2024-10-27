@@ -1,0 +1,20 @@
+meta {
+  name: Creat user - 200
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{svc-back}}/user
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name":"mateus",
+    "email":"wwedwewe@user.com",
+    "password":"123Ae@",
+    "phone": "+55 44 998721118"
+  }
+}

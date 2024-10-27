@@ -1,0 +1,20 @@
+meta {
+  name: Update User
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{svc-back}}/user/92c70847-1af6-4067-a51d-354e8097a80e
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "kuytfuky",
+    "email":"3fdfwffefwefweefew@user.com",
+    "password":"ffewfwfwewefweefwefwe@",
+    "phone": "5544998721118"
+  }
+}
