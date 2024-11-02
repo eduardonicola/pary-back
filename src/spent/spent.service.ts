@@ -3,7 +3,6 @@ import { CreateSpentDto } from './dto/create-spent.dto';
 import { UpdateSpentDto } from './dto/update-spent.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Prisma } from '@prisma/client';
-import { log } from 'console';
 import { MessageStatus } from 'src/responses/router';
 @Injectable()
 export class SpentService {
