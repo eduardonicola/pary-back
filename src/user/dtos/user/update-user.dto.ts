@@ -14,9 +14,7 @@ export class UpdateUserDto {
   @IsPhoneNumber(null, phone.matchRegex)
   phone?: string;
 
-  @IsString()
-  @IsOptional()
-  @IsEmail({}, email.matchRegex)
+  @Exclude()
   email?: string;
 
   @Exclude() 
