@@ -1,0 +1,21 @@
+meta {
+  name: upDate spent
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{svc-back}}/spent/15b05645-61b6-41f4-a115-
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "23",
+    "value": "230.00",
+    "description":" valor sa chacara",
+    "amount": 1,
+    "type_spent": "location"
+  }
+}

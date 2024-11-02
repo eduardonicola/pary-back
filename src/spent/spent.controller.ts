@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { SpentService } from './spent.service';
 import { CreateSpentDto } from './dto/create-spent.dto';
 import { UpdateSpentDto } from './dto/update-spent.dto';
@@ -12,23 +12,18 @@ export class SpentController {
     return this.spentService.create(createSpentDto);
   }
 
-  @Get()
-  findAll() {
-    return this.spentService.findAll();
+  @Get(':uuid_event')
+  findAll(@Param('uuid_event') uuid_event: string) {
+    return this.spentService.findAll(uuid_event);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.spentService.findOne(+id);
+  @Put(':uuid_spent')
+  update(@Param('uuid_spent') uuid_spent: string, @Body() updateSpentDto: UpdateSpentDto) {
+    return this.spentService.update(uuid_spent, updateSpentDto);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSpentDto: UpdateSpentDto) {
-    return this.spentService.update(+id, updateSpentDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.spentService.remove(+id);
+  @Delete(':uudi_spent')
+  remove(@Param('uudi_spent') uudi_spent: string) {
+    return this.spentService.remove(uudi_spent);
   }
 }

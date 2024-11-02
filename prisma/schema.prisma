@@ -66,8 +66,8 @@ model Spent {
   value       Decimal   @db.Decimal(10, 2)
   amount      Int
   type_spent  TypeSpent
-  event       Event     @relation(fields: [eventId], references: [uuid_event], onDelete: Cascade)
-  eventId     String    @db.VarChar(36)
+  event       Event     @relation(fields: [uuid_event], references: [uuid_event], onDelete: Cascade)
+  uuid_event     String    @db.VarChar(36)
 }
 
 model UserHasEvent {

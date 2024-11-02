@@ -1,0 +1,22 @@
+meta {
+  name: Creat spent
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{svc-back}}/spent/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Local",
+    "value": "10.00",
+    "description":" valor sa chacara",
+    "amount": 1,
+    "uuid_event": "0e92e0a5-6599-45cf-81bf-e8f96902162f",
+    "type_spent": "location"
+  }
+}
