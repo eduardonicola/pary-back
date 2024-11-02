@@ -29,7 +29,6 @@ enum UserLevel {
 }
 
 enum TypeAdditional {
-  location
   hard_drink
   dink
   food_omnivorous
