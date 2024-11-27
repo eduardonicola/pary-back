@@ -5,13 +5,14 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
 import { AuthController } from './auth.controller';
+import { env } from 'process';
 
 @Module({
   imports: [
     UserModule,
     PassportModule,
     JwtModule.register({
-      secret: 'SECRET_KEY',  // Coloque uma chave secreta forte aqui
+      secret: env.SECRET_KEY,  // Coloque uma chave secreta forte aqui
       signOptions: { expiresIn: '360d' },  // O token expira após 60 minutos
     }),
   ],

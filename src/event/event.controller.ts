@@ -5,6 +5,7 @@ import { UpdateEventDto } from './dto/update-event.dto';
 import { Event } from '@prisma/client';
 import { MessageStatus } from 'src/responses/router';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { User } from 'src/auth/get-user.decorator';
 
 @Controller('event')
 export class EventController {
@@ -12,27 +13,31 @@ export class EventController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
-  create(@Body() createEventDto: CreateEventDto): Promise<Event> {
-    return this.eventService.create(createEventDto);
+  create(@Body() createEventDto: CreateEventDto, @User('uuid_user') userId: string): Promise<Event> {
+    return this.eventService.create(createEventDto, userId);
   }
 
   @Get()
-  findAll(): Promise<Event[]> {
-    return this.eventService.findAll();
+  @UseGuards(JwtAuthGuard)
+  findAll(@User('uuid_user') userId: string): Promise<Event[]> {
+    return this.eventService.findAll(userId);
   }
 
   @Get(':uuid_event')
-  findOne(@Param('uuid_event') uuid_event: string): Promise<Event> {
-    return this.eventService.findOne(uuid_event);
+  @UseGuards(JwtAuthGuard)
+  findOne(@Param('uuid_event') uuid_event: string, @User('uuid_user') userId: string): Promise<Event> {
+    return this.eventService.findOne(uuid_event,userId);
   }
 
   @Put(':uuid_event')
-  update(@Param('uuid_event') uuid_event: string, @Body() updateEventDto: UpdateEventDto):Promise<Event> {
-    return this.eventService.update(uuid_event, updateEventDto);
+  @UseGuards(JwtAuthGuard)
+  update(@Param('uuid_event') uuid_event: string, @Body() updateEventDto: UpdateEventDto, @User('uuid_user') userId: string):Promise<Event> {
+    return this.eventService.update(uuid_event, updateEventDto, userId);
   }
 
   @Delete(':uuid_event')
-  remove(@Param('uuid_event') uuid_event: string):Promise<MessageStatus | NotFoundException | HttpException> {
-    return this.eventService.remove(uuid_event);
+  @UseGuards(JwtAuthGuard)
+  remove(@Param('uuid_event') uuid_event: string, @User('uuid_user') userId: string):Promise<MessageStatus | NotFoundException | HttpException> {
+    return this.eventService.remove(uuid_event, userId);
   }
 }

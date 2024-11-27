@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { EventModule } from './event/event.module';
 import { SpentModule } from './spent/spent.module';
 import { AdditionalModule } from './additional/additional.module';
+import { UheModule } from './user-has-event/uhe.module';
 @Module({
   imports: [
     PrismaModule,
@@ -16,6 +17,7 @@ import { AdditionalModule } from './additional/additional.module';
     AuthModule,
     SpentModule,
     AdditionalModule,
+    UheModule,
   ],
   controllers: [AppController],
   providers: [AppService],

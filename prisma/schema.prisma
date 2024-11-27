@@ -25,7 +25,6 @@ enum UserLevel {
   owner
   guest
   manager
-  advertising
 }
 
 enum TypeAdditional {
@@ -44,19 +43,19 @@ model Event {
   date_and_time DateTime
   description   String?        @db.Text
   egalitarian   Boolean        @default(true)
-  users         UserHasEvent[]
+  userHasevent  UserHasEvent[]
   spents        Spent[]
   additionals   Additional[]
 }
 
 model User {
-  uuid_user   String         @id @default(uuid()) @db.VarChar(36)
-  name        String         @db.VarChar(255)
-  password    String         @db.VarChar(255)
-  phone       String         @db.VarChar(15)
-  email       String         @unique @db.VarChar(255) 
-  events      UserHasEvent[]
-  additionals Additional[]
+  uuid_user    String         @id @default(uuid()) @db.VarChar(36)
+  name         String         @db.VarChar(255)
+  password     String         @db.VarChar(255)
+  phone        String         @db.VarChar(15)
+  email        String         @unique @db.VarChar(255) 
+  userHasevent UserHasEvent[]
+  additionals  Additional[]
 }
 
 model Spent {

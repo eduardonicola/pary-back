@@ -3,14 +3,14 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { UserService } from '../user/user.service';   // Serviço de usuários
 import { JwtPayload } from './interfaces/jwt-payload.interface';
-import { log } from 'console';
+import { env } from 'process';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly userService: UserService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // Extrai o token do cabeçalho Authorization
-      secretOrKey: 'SECRET_KEY', // Chave secreta usada para assinar/verificar o token
+      secretOrKey: env.SECRET_KEY, // Chave secreta usada para assinar/verificar o token
     });
   }
 
