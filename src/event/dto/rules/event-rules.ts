@@ -1,5 +1,4 @@
 
-const moment = require('moment');
 
 const name = {
   required: { message: 'O nome é obrigatório' },
