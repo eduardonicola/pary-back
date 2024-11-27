@@ -10,7 +10,6 @@ export class UpdateUserDto {
 
   @IsString()
   @IsOptional()
-  @Transform(phone.format) 
   @IsPhoneNumber(null, phone.matchRegex)
   phone?: string;
 

@@ -27,6 +27,5 @@ export class CreateUserDto {
   @IsString()
   @IsNotEmpty(phone.required)
   @IsPhoneNumber(null, phone.matchRegex)
-  @Transform(phone.format)
   phone: string;
 }

@@ -28,18 +28,6 @@ const phone = {
   matchRegex: {
     message: 'O número de telefone deve ser válido em formato internacional com o +',
   },
-  format: ({ value }) => {
-    if (typeof value == 'string') {
-      value = value.replace(/\s+/g, '')
-      if (!value.startsWith('+')) {
-        // Adiciona o código de país do Brasil (+55) se não tiver '+'
-        value = '+' + value;
-      }
-      return value;
-    } else {
-      return 0
-    }
-  },
 };
 
 export { password, name, email, phone };

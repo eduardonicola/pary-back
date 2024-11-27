@@ -17,6 +17,13 @@ async function bootstrap() {
     forbidNonWhitelisted: true,  // Gera erro se campos não permitidos forem enviados
     transform: true,  // Habilita transformações usando class-transformer
   }))
+
+  app.enableCors({
+    origin: '*', // URL da sua aplicação front-end (Next.js ou qualquer outra)
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos permitidos
+    allowedHeaders: 'Content-Type, Authorization', // Cabeçalhos permitidos
+  });
+
   await app.listen(env.SERVICE_PORT, env.SERVICE_HOST);
   console.log(`\x1b[32mApplication is running on: ${await app.getUrl()}\x1b[0m`);
 }
