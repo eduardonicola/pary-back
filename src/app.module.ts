@@ -6,12 +6,14 @@ import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
 import { EventModule } from './event/event.module';
 import { SpentModule } from './spent/spent.module';
+import { AdditionalModule } from './additional/additional.module';
 @Module({
   imports: [
     PrismaModule,
     UserModule,
     EventModule,
     SpentModule,
+    AdditionalModule,
   ],
   controllers: [AppController],
   providers: [AppService],
