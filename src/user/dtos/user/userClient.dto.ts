@@ -12,4 +12,6 @@ export class UserAplicationClient {
 
   @Expose()
   name: string;
+  @Expose()
+  password: string;
 }

@@ -7,7 +7,11 @@ meta {
 post {
   url: {{svc-back}}/event
   body: json
-  auth: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzI3MjM0MzgsImV4cCI6MTc2MzgyNzQzOH0.WXr7NMvBySTf-4mLkH4Dj6RLOyuLLem_vSx8rbMIHXA
 }
 
 body:json {
