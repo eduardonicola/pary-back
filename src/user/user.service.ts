@@ -2,10 +2,8 @@ import { ConflictException, HttpException, HttpStatus, Injectable, NotFoundExcep
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dtos/user/creat-user.dto';
 import * as bcrypt from 'bcrypt';
-import { UpdateUserDto } from './dtos/user/update-user.dto';
 import { MessageStatus } from '../responses/router';
 import { UserAplicationClient } from './dtos/user/userClient.dto';
-import { plainToInstance, TransformPlainToInstance } from 'class-transformer';
 
 @Injectable()
 export class UserService {
@@ -31,17 +29,10 @@ export class UserService {
     return new MessageStatus('Usuaior criado com sucesso');
   }
 
-  async getUser(uuid_user: string,): 
-    Promise<UserAplicationClient | MessageStatus> {
+  async findUser(email: string,): 
+    Promise<UserAplicationClient | null> {
       const user = await this.prisma.user.findUnique({
-        where: { uuid_user },
-        select: {
-          uuid_user: true,
-          name: true,
-          phone: true,
-          email: true,
-          password: false,
-        },
+        where: { email },
       });
       if (user) {
         return user;
@@ -49,20 +40,4 @@ export class UserService {
       throw new NotFoundException('Usuário não encontrado');;
   }
 
-  async updateUser(uuid_user: string, data: UpdateUserDto): Promise<UserAplicationClient | MessageStatus> {
-
-    try {
-      const user = await this.prisma.user.update({ where: { uuid_user }, data })  
-
-      return plainToInstance(UserAplicationClient, user, { excludeExtraneousValues: true });
-    } catch (error) {
-      if (error.code === 'P2025') {
-        throw new NotFoundException('Usuário não encontrado');
-      }
-      throw new HttpException(
-        'Erro ao atualizar o usuário',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-  }
 }

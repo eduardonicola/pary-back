@@ -16,14 +16,4 @@ export class UserController {
     return this.userService.create(data);
   }
 
-  @Get(':uuid_user')
-  async getUser(@Param('uuid_user') uuid_user: string): Promise<UserAplicationClient | MessageStatus> {
-    return this.userService.getUser(uuid_user);
-  }
-
-  @Put(':uuid_user')
-  async updateUser(@Param('uuid_user') uuid_user: string, @Body() data: UpdateUserDto): Promise<UserAplicationClient | MessageStatus> {
-    return this.userService.updateUser(uuid_user, data);
-  }
-
 }
