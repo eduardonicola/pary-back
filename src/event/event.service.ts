@@ -5,7 +5,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { Event } from '@prisma/client';
 import { MessageStatus } from 'src/responses/router';
 import { UheService } from 'src/user-has-event/uhe.service'
-import { log } from 'console';
+
 @Injectable()
 export class EventService {
   constructor(
@@ -14,12 +14,13 @@ export class EventService {
   ) {}
 
 async create(createEventDto: CreateEventDto, uuid_user: string, ): Promise<Event> {
-    const { name, locate, date_and_time, description, egalitarian } = createEventDto;
+    const { name, locate, date_and_time, description, egalitarian, date_stop_sub } = createEventDto;
     const eventCreated = await this.prisma.event.create({
       data: {
         name,
         locate,
         date_and_time, 
+        date_stop_sub,
         description,
         egalitarian, 
       },
@@ -32,7 +33,7 @@ async create(createEventDto: CreateEventDto, uuid_user: string, ): Promise<Event
     }
   }
 
-  findAll(uuid_user: string): Promise<Event[]> {
+  async findAll(uuid_user: string): Promise<Event[]> {
     return this.prisma.event.findMany({
       where: {
         userHasevent: {
@@ -60,6 +61,7 @@ async create(createEventDto: CreateEventDto, uuid_user: string, ): Promise<Event
         description: event.description,
         egalitarian: event.egalitarian,
         uuid_event: event.uuid_event,
+        date_stop_sub: event.date_stop_sub,
         userHasevent: event.userHasevent.map(uh => uh.user_level), // Mapeia o array para um array de strings
       }));
     });;

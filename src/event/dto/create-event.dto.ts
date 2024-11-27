@@ -18,6 +18,10 @@ export class CreateEventDto {
   @IsDateString({},date_and_time.typeMatch)
   date_and_time: string;
 
+  @IsNotEmpty(date_and_time.required)
+  @IsDateString({},date_and_time.typeMatch)
+  date_stop_sub: string
+  
   @IsNotEmpty(description.required)
   @IsString(description.typeMatch)
   description: string;

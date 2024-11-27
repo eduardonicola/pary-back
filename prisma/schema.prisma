@@ -41,6 +41,7 @@ model Event {
   name          String         @db.VarChar(255)
   locate        String         @db.VarChar(255)
   date_and_time DateTime
+  date_stop_sub DateTime
   description   String?        @db.Text
   egalitarian   Boolean        @default(true)
   userHasevent  UserHasEvent[]
