@@ -4,6 +4,7 @@ import { CreateUserDto } from './dtos/user/creat-user.dto';
 import * as bcrypt from 'bcrypt';
 import { MessageStatus } from '../responses/router';
 import { UserAplicationClient } from './dtos/user/userClient.dto';
+import { log } from 'console';
 
 @Injectable()
 export class UserService {

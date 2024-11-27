@@ -3,6 +3,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { UserService } from '../user/user.service';   // Serviço de usuários
 import { JwtPayload } from './interfaces/jwt-payload.interface';
+import { log } from 'console';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -16,6 +17,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   // Método chamado automaticamente para validar o token JWT
   async validate(payload: JwtPayload) {
     // O payload contém o email e o sub (ID do usuário) a partir do token JWT
+
     const user = await this.userService.findUser(payload.email);
 
     if (!user) {

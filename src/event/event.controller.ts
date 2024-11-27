@@ -1,15 +1,17 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, NotFoundException, HttpException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, NotFoundException, HttpException, UseGuards } from '@nestjs/common';
 import { EventService } from './event.service';
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
 import { Event } from '@prisma/client';
 import { MessageStatus } from 'src/responses/router';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('event')
 export class EventController {
   constructor(private readonly eventService: EventService) {}
 
   @Post()
+  @UseGuards(JwtAuthGuard)
   create(@Body() createEventDto: CreateEventDto): Promise<Event> {
     return this.eventService.create(createEventDto);
   }
