@@ -19,7 +19,7 @@ export class EventController {
 
   @Get()
   @UseGuards(JwtAuthGuard)
-  findAll(@User('uuid_user') userId: string): Promise<Event[]> {
+  findAll(@User('uuid_user') userId: string): any {
     return this.eventService.findAll(userId);
   }
 

@@ -16,8 +16,7 @@ enum TypeDivision {
 enum TypeSpent {
   hard_drink
   dink
-  food_omnivorous
-  food_vegan
+  food
   location
 }
 
@@ -30,8 +29,7 @@ enum UserLevel {
 enum TypeAdditional {
   hard_drink
   dink
-  food_omnivorous
-  food_vegan
+  food
   pastime
 }
 

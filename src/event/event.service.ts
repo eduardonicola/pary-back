@@ -2,9 +2,10 @@ import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestj
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Event } from '@prisma/client';
 import { MessageStatus } from 'src/responses/router';
 import { UheService } from 'src/user-has-event/uhe.service'
+import { EventFront } from './dto/listevent.dto';
+import { Event } from '@prisma/client';
 
 @Injectable()
 export class EventService {
@@ -33,8 +34,8 @@ async create(createEventDto: CreateEventDto, uuid_user: string, ): Promise<Event
     }
   }
 
-  async findAll(uuid_user: string): Promise<Event[]> {
-    return this.prisma.event.findMany({
+  async findAll(uuid_user: string): Promise<Partial<EventFront[]>> {
+    const list = await this.prisma.event.findMany({
       where: {
         userHasevent: {
           some: {
@@ -44,11 +45,17 @@ async create(createEventDto: CreateEventDto, uuid_user: string, ): Promise<Event
       },
       include: {
         userHasevent: {
-          where:{
-            uuid_user: uuid_user
-          },
+          include:{
+            user: true
+          }
+        },
+        spents: {
           select:{
-            user_level: true
+            uuid_spent: true,
+            description: true,
+            amount: true,
+            value: true,
+            type_spent: true
           }
         },
       },
@@ -57,14 +64,26 @@ async create(createEventDto: CreateEventDto, uuid_user: string, ): Promise<Event
       return events.map(event => ({
         name: event.name,
         locate: event.locate,
-        date_and_time: event.date_and_time,
+        date_and_time: event.date_and_time.toISOString(),
         description: event.description,
         egalitarian: event.egalitarian,
         uuid_event: event.uuid_event,
-        date_stop_sub: event.date_stop_sub,
-        userHasevent: event.userHasevent.map(uh => uh.user_level), // Mapeia o array para um array de strings
+        date_stop_sub: event.date_stop_sub.toISOString(),
+        userLevel: event.userHasevent.find(uh => uh.uuid_user == uuid_user).user_level,
+        participants: event.userHasevent.map(participant => {
+          if (participant.uuid_user !== uuid_user) {
+            return {
+              uuid_user: participant.uuid_user,
+              name: participant.user.name
+            };
+          }
+          return null;  
+        }).filter(item => item !== null),
+        spent: event.spents
       }));
     });;
+
+    return list
   }
 
   findOne(uuid_event: string, uuid_user: string): Promise<Event> {

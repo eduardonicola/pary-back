@@ -21,7 +21,7 @@ async function bootstrap() {
   app.enableCors({
     origin: '*', // URL da sua aplicação front-end (Next.js ou qualquer outra)
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos permitidos
-    allowedHeaders: 'Content-Type, Authorization', // Cabeçalhos permitidos
+    allowedHeaders: ['Authorization', 'Content-Type'], // Cabeçalhos permitidos
   });
 
   await app.listen(env.SERVICE_PORT, env.SERVICE_HOST);
