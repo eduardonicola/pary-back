@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';  // Serviço de usuários
 import { JwtPayload } from './interfaces/jwt-payload.interface';
@@ -14,11 +14,24 @@ export class AuthService {
 
   // Função para validar o usuário durante o login
   async validateUser(userEmail: string, pass: string): Promise<any> {
-    const user = await this.UserService.findUser(userEmail);
-    if (user && bcrypt.compareSync(pass, user.password)) {    
-      return user;
+    try {
+      const user = await this.UserService.findUser(userEmail);
+      if (user && bcrypt.compareSync(pass, user.password)) {    
+        return user;
+      }
+      throw new BadRequestException({
+        error: 'Bad Request',
+        message: ['Erro ao validar o usuário e senha'],
+        statusCode: 400,
+      });
+      
+    } catch (error) {
+      throw new BadRequestException({
+        error: 'Bad Request',
+        message: ['Erro ao validar o usuário e senha'],
+        statusCode: 400,
+      });
     }
-    return null;
   }
 
 
