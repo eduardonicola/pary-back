@@ -1,12 +1,13 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { log } from 'console';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { Additional } from './dto/subuscription.dto';
 
 @Injectable()
 export class SubscriptionService {
   constructor( private readonly prisma: PrismaService) {}
 
-  async creatSub(uuid_event: string, uuid_user: string) {
+  async creatSub(uuid_event: string, uuid_user: string, additional : Additional) {
     const event = await this.prisma.event.findUnique({
       where: { uuid_event: uuid_event },
       include:{
@@ -32,15 +33,28 @@ export class SubscriptionService {
     }
 
     try {
-     const uhe = this.prisma.userHasEvent.create({
-      
+     const uhe = await this.prisma.userHasEvent.create({  
         data:{
           uuid_event: uuid_event,
           uuid_user: uuid_user,
           user_level: "guest",
         }
       })
-      return uhe
+
+      const creatAddt = await this.prisma.additional.create({
+        data:{
+          uuid_event: uuid_event,
+          uuid_user: uuid_user,
+          hard_drink: additional.hard_drink,
+          drink: additional.drink,
+          food: additional.food,
+          pastime: additional.pastime,
+        }
+      })
+
+      if(creatAddt.id && uhe.id ){
+        return { subscribe: 'Particiopando' }
+      }
     } catch (error) {
       return error
     }
