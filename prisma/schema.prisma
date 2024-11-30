@@ -71,7 +71,7 @@ enum TypeDivision {
 
 enum TypeSpent {
   hard_drink
-  dink
+  drink
   food
   location
   pastime
