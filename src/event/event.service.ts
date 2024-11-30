@@ -6,11 +6,13 @@ import { MessageStatus } from 'src/responses/router';
 import { UheService } from 'src/user-has-event/uhe.service'
 import { EventFront } from './dto/listevent.dto';
 import { Event } from '@prisma/client';
+import { AdditionalService } from 'src/additional/additional.service';
 
 @Injectable()
 export class EventService {
   constructor(
     private readonly userHasEvent: UheService,
+    private readonly additiona: AdditionalService,
     private readonly prisma: PrismaService
   ) {}
 
@@ -27,6 +29,14 @@ async create(createEventDto: CreateEventDto, uuid_user: string, ): Promise<Event
       },
     });
     const uhe = await this.userHasEvent.creat(eventCreated.uuid_event, uuid_user)
+    await this.additiona.creatAddt(       {
+      uuid_event: eventCreated.uuid_event,
+      uuid_user: uuid_user,
+      hard_drink: true,
+      drink: true,
+      food: true,
+      pastime: true,
+    })
     if(uhe){
       return eventCreated;
     }else{

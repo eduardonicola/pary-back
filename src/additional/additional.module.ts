@@ -4,6 +4,7 @@ import { AdditionalService } from './additional.service';
 
 @Module({
   controllers: [AdditionalController],
-  providers: [AdditionalService]
+  providers: [AdditionalService],
+  exports:[AdditionalService]
 })
 export class AdditionalModule {}
