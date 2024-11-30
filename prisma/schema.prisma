@@ -7,7 +7,63 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Enums
+model Event {
+  uuid_event    String         @id @default(uuid()) @db.VarChar(36)
+  name          String         @db.VarChar(255)
+  locate        String         @db.VarChar(255)
+  date_and_time DateTime
+  description   String?
+  egalitarian   Boolean        @default(true)
+  date_stop_sub DateTime
+  additionals   Additional[]
+  spents        Spent[]
+  userHasevent  UserHasEvent[]
+}
+
+model User {
+  uuid_user    String         @id @default(uuid()) @db.VarChar(36)
+  name         String         @db.VarChar(255)
+  phone        String         @db.VarChar(15)
+  email        String         @unique @db.VarChar(255)
+  password     String         @db.VarChar(255)
+  additionals  Additional[]
+  userHasevent UserHasEvent[]
+}
+
+model Spent {
+  uuid_spent  String    @id @default(uuid()) @db.VarChar(36)
+  name        String    @db.VarChar(255)
+  description String?
+  value       Decimal   @db.Decimal(10, 2)
+  amount      Int
+  type_spent  TypeSpent
+  uuid_event  String    @db.VarChar(36)
+  event       Event     @relation(fields: [uuid_event], references: [uuid_event], onDelete: Cascade)
+}
+
+model UserHasEvent {
+  id         BigInt    @id @default(autoincrement())
+  uuid_user  String    @db.VarChar(36)
+  uuid_event String    @db.VarChar(36)
+  user_level UserLevel
+  event      Event     @relation(fields: [uuid_event], references: [uuid_event], onDelete: Cascade)
+  user       User      @relation(fields: [uuid_user], references: [uuid_user], onDelete: Cascade)
+
+  @@unique([uuid_user, uuid_event])
+}
+
+model Additional {
+  id         BigInt  @id @default(autoincrement())
+  uuid_user  String  @db.VarChar(36)
+  uuid_event String  @db.VarChar(36)
+  drink      Boolean @default(false)
+  food       Boolean @default(false)
+  hard_drink Boolean @default(false)
+  pastime    Boolean @default(false)
+  event      Event   @relation(fields: [uuid_event], references: [uuid_event], onDelete: Cascade)
+  user       User    @relation(fields: [uuid_user], references: [uuid_user])
+}
+
 enum TypeDivision {
   egalitarian
   absorption
@@ -24,62 +80,4 @@ enum UserLevel {
   owner
   guest
   manager
-}
-
-// Modelos
-model Event {
-  uuid_event    String         @id @default(uuid()) @db.VarChar(36)
-  name          String         @db.VarChar(255)
-  locate        String         @db.VarChar(255)
-  date_and_time DateTime
-  date_stop_sub DateTime
-  description   String?        @db.Text
-  egalitarian   Boolean        @default(true)
-  userHasevent  UserHasEvent[]
-  spents        Spent[]
-  additionals   Additional[]
-}
-
-model User {
-  uuid_user    String         @id @default(uuid()) @db.VarChar(36)
-  name         String         @db.VarChar(255)
-  password     String         @db.VarChar(255)
-  phone        String         @db.VarChar(15)
-  email        String         @unique @db.VarChar(255) 
-  userHasevent UserHasEvent[]
-  additionals  Additional[]
-}
-
-model Spent {
-  uuid_spent  String    @id @default(uuid()) @db.VarChar(36)
-  name        String    @db.VarChar(255)
-  description String?   @db.Text
-  value       Decimal   @db.Decimal(10, 2)
-  amount      Int
-  type_spent  TypeSpent
-  event       Event     @relation(fields: [uuid_event], references: [uuid_event], onDelete: Cascade)
-  uuid_event     String    @db.VarChar(36)
-}
-
-model UserHasEvent {
-  id         BigInt    @id @default(autoincrement())
-  uuid_user  String    @db.VarChar(36)
-  uuid_event String    @db.VarChar(36)
-  user_level UserLevel
-  user       User      @relation(fields: [uuid_user], references: [uuid_user], onDelete: Cascade)
-  event      Event     @relation(fields: [uuid_event], references: [uuid_event], onDelete: Cascade)
-
-  @@unique([uuid_user, uuid_event])
-}
-
-model Additional {
-  id           BigInt  @id @default(autoincrement())
-  hard_drink   Boolean @default(false)
-  drink        Boolean @default(false)
-  food         Boolean @default(false)
-  pastime      Boolean @default(false)
-  uuid_user    String  @db.VarChar(36)
-  uuid_event   String  @db.VarChar(36)
-  user         User    @relation(fields: [uuid_user], references: [uuid_user])
-  event        Event   @relation(fields: [uuid_event], references: [uuid_event], onDelete: Cascade)
 }

@@ -12,28 +12,15 @@ export class AdditionalService {
     return this.prisma.additional.findMany();
   }
 
-  async findOne(id: number) {
-    const additional = await this.prisma.additional.findUnique({ where: { id } });
+  async findOne(uuid_event: string, uuid_user:string) {
+    const additional = await this.prisma.additional.findFirst({
+      where: { uuid_event: uuid_event, uuid_user: uuid_user },
+    });    
     if (!additional) {
-      throw new NotFoundException(`Additional with ID ${id} not found`);
+      throw new NotFoundException("Usuario não se iscreveu");
     }
     return additional;
   }
 
-  async create(data: CreateAdditionalDto) {
-    return this.prisma.additional.create({ data });
-  }
 
-  async update(id: number, data: UpdateAdditionalDto) {
-    await this.findOne(id); // Garantir que o additional existe
-    return this.prisma.additional.update({
-      where: { id },
-      data,
-    });
-  }
-
-  async remove(id: number) {
-    await this.findOne(id); // Garantir que o additional existe
-    return this.prisma.additional.delete({ where: { id } });
-  }
 }

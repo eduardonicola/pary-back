@@ -129,7 +129,7 @@ async create(createEventDto: CreateEventDto, uuid_user: string, ): Promise<Event
           }
           return null;  
         }).filter(item => item !== null),
-        spent:callBackEvent.spents
+        spent:callBackEvent.spents,
       }
     });
     return uniqEvent
