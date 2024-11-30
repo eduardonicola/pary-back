@@ -6,6 +6,7 @@ import { Event } from '@prisma/client';
 import { MessageStatus } from 'src/responses/router';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { User } from 'src/auth/get-user.decorator';
+import { EventFront } from './dto/listevent.dto';
 
 @Controller('event')
 export class EventController {
@@ -25,7 +26,7 @@ export class EventController {
 
   @Get(':uuid_event')
   @UseGuards(JwtAuthGuard)
-  findOne(@Param('uuid_event') uuid_event: string, @User('uuid_user') userId: string): Promise<Event> {
+  findOne(@Param('uuid_event') uuid_event: string, @User('uuid_user') userId: string): Promise<EventFront> {
     return this.eventService.findOne(uuid_event,userId);
   }
 

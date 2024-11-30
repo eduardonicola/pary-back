@@ -86,10 +86,53 @@ async create(createEventDto: CreateEventDto, uuid_user: string, ): Promise<Event
     return list
   }
 
-  findOne(uuid_event: string, uuid_user: string): Promise<Event> {
-    return this.prisma.event.findUnique({
-      where: { uuid_event: uuid_event },
+  async findOne(uuid_event: string, uuid_user: string): Promise<EventFront> {
+    const hasAccess = await this.prisma.userHasEvent.findFirst({
+      where: {
+        uuid_event: uuid_event,
+        uuid_user: uuid_user,
+      },
+      select: {
+        uuid_event: true, // Retorna apenas o que for necessário
+      },
     });
+    
+    if (!hasAccess) {
+      throw new Error('Acesso negado ou evento não encontrado.');
+    }
+    const uniqEvent = await this.prisma.event.findUnique({
+      where: { uuid_event: uuid_event },
+      include:{
+        spents:true,
+        userHasevent: {
+          include:{
+            user: true
+          }
+        },
+      }
+    }).then((callBackEvent) =>{
+      return {
+        name: callBackEvent.name,
+        locate: callBackEvent.locate,
+        date_and_time: callBackEvent.date_and_time.toISOString(),
+        description: callBackEvent.description,
+        egalitarian: callBackEvent.egalitarian,
+        uuid_event: callBackEvent.uuid_event,
+        date_stop_sub: callBackEvent.date_stop_sub.toISOString(),
+        userLevel: callBackEvent.userHasevent.find(uh => uh.uuid_user == uuid_user).user_level,
+        participants: callBackEvent.userHasevent.map(participant => {
+          if (participant.uuid_user !== uuid_user) {
+            return {
+              uuid_user: participant.uuid_user,
+              name: participant.user.name
+            };
+          }
+          return null;  
+        }).filter(item => item !== null),
+        spent:callBackEvent.spents
+      }
+    });
+    return uniqEvent
   }
 
   async update(uuid_event: string, data: UpdateEventDto, uuid_user: string): Promise<Event> {
