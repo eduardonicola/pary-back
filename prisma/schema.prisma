@@ -42,7 +42,7 @@ model Spent {
 }
 
 model UserHasEvent {
-  id         BigInt    @id @default(autoincrement())
+  id         Int    @id @default(autoincrement())
   uuid_user  String    @db.VarChar(36)
   uuid_event String    @db.VarChar(36)
   user_level UserLevel
@@ -53,7 +53,7 @@ model UserHasEvent {
 }
 
 model Additional {
-  id         BigInt  @id @default(autoincrement())
+  id         Int  @id @default(autoincrement())
   uuid_user  String  @db.VarChar(36)
   uuid_event String  @db.VarChar(36)
   drink      Boolean @default(false)
@@ -74,6 +74,7 @@ enum TypeSpent {
   dink
   food
   location
+  pastime
 }
 
 enum UserLevel {

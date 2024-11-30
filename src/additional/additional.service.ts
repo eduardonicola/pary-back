@@ -11,7 +11,8 @@ export class AdditionalService {
   }
 
   async creatAddt(data:  Omit<Additional ,'id'>){
-    this.prisma.additional.create({data:data})
+    const addt = await this.prisma.additional.create({data:data})
+    return addt
   }
 
   async findOne(uuid_event: string, uuid_user:string) {
