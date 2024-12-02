@@ -1,4 +1,4 @@
-import { $Enums } from "@prisma/client";
+import { $Enums } from '@prisma/client';
 
 export interface EventFront {
   uuid_event: string;
@@ -15,7 +15,8 @@ export interface EventFront {
 
 export interface Participant {
   uuid_user: string;
-  name: string  
+  name: string;
+  user_level?: 'owner' | 'guest' | 'manager';
 }
 
 export interface Spent {

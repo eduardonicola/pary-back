@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { log } from 'console';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Additional } from './dto/subuscription.dto';
+import { Participant } from 'src/event/dto/listevent.dto';
 
 @Injectable()
 export class SubscriptionService {
@@ -59,5 +60,40 @@ export class SubscriptionService {
       return error
     }
 
+  }
+
+  async editLevel(data: Participant, uuid_event: string, userLoged: string){
+    const logedLevel = await this.prisma.userHasEvent.findFirstOrThrow({
+      where:{
+        uuid_event: uuid_event,
+        uuid_user: userLoged, 
+      }
+    })
+    console.log();
+    
+    const hasOwner = logedLevel.user_level === "owner"
+
+    if(hasOwner){
+      try {
+        const updatedItem = await this.prisma.userHasEvent.update({
+          where: {
+            uuid_user_uuid_event: {
+              uuid_user: data.uuid_user,
+              uuid_event: uuid_event,
+            },
+          },
+        
+          data: {
+            user_level: data.user_level // Atualizando apenas o campo 'user_level'
+          }
+        });
+    
+        return updatedItem;
+      } catch (error) {
+        console.error("Erro ao atualizar:", error);
+      }
+    
+    }
+    throw new BadRequestException('Não tem permição')
   }
 }
