@@ -53,17 +53,31 @@ export class SpentService {
     }
   }
 
-  async remove(id: string) {
-    try {
-      await this.prisma.spent.delete({
-        where: { uuid_spent: id },
-      });
-      return new MessageStatus('Gasto deletado com sucesso');
-    } catch (error) {
-      if (error.code === 'P2025') {
-        throw new BadRequestException('Gasto não encontrado');
+  async remove(id: string, uuid_event: string, uuid_user: string) {
+    const access = await this.prisma.userHasEvent.findFirst({
+      where: {
+        uuid_event: uuid_event,
+        uuid_user: uuid_user,
+      },
+      select: {
+        user_level: true, // Retorna apenas o que for necessário
+      },
+    });
+    const hasAccess = access.user_level !== 'guest'
+
+    if(hasAccess){      
+      try {
+        await this.prisma.spent.delete({
+          where: { uuid_spent: id },
+        });
+        return new MessageStatus('Gasto deletado com sucesso');
+      } catch (error) {
+        if (error.code === 'P2025') {
+          throw new BadRequestException('Gasto não encontrado');
+        }
+        throw new BadRequestException(error.meta.cause);
       }
-      throw new BadRequestException(error.meta.cause);
     }
+    return new BadRequestException('Sem permição')
   }
 }

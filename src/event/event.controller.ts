@@ -30,7 +30,7 @@ export class EventController {
     return this.eventService.findOne(uuid_event,userId);
   }
 
-  @Put(':uuid_event')
+  @Post(':uuid_event')
   @UseGuards(JwtAuthGuard)
   update(@Param('uuid_event') uuid_event: string, @Body() updateEventDto: UpdateEventDto, @User('uuid_user') userId: string):Promise<Event> {
     return this.eventService.update(uuid_event, updateEventDto, userId);
