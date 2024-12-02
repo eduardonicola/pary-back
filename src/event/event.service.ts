@@ -163,6 +163,7 @@ export class EventService {
                 return {
                   uuid_user: participant.uuid_user,
                   name: participant.user.name,
+                  user_level: participant.user_level
                 };
               }
               return null;
