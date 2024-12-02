@@ -31,10 +31,18 @@ export class SpentService {
   }
 
   async update(id: string, updateSpentDto: UpdateSpentDto) {
+    console.log(id, updateSpentDto);
+    
     try {
       const updateSpent = await this.prisma.spent.update({
         where: { uuid_spent: id },
-        data: updateSpentDto,
+        data: {
+          amount: updateSpentDto.amount,
+          description: updateSpentDto.description,
+          value: updateSpentDto.value,
+          name: updateSpentDto.name,
+          type_spent: updateSpentDto.type_spent,
+        }
       });
       return updateSpent;
     } catch (error) {

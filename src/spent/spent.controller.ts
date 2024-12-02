@@ -17,7 +17,7 @@ export class SpentController {
     return this.spentService.findAll(uuid_event);
   }
 
-  @Put(':uuid_spent')
+  @Post(':uuid_spent')
   update(@Param('uuid_spent') uuid_spent: string, @Body() updateSpentDto: UpdateSpentDto) {
     return this.spentService.update(uuid_spent, updateSpentDto);
   }

@@ -1,7 +1,6 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateSpentDto } from './create-spent.dto';
 import { TypeSpent } from '@prisma/client';
-import { Exclude } from 'class-transformer';
 import { IsDecimal } from 'class-validator';
 import { value } from './rules/creat-spent';
 
@@ -12,7 +11,6 @@ export class UpdateSpentDto extends PartialType(CreateSpentDto) {
   value?: string;
   amount?: number;
   type_spent?: TypeSpent;
-  
-  @Exclude()
-  uuid_event: string;
+  uuid_event?: string;
+  uuid_spent?: string;
 }
