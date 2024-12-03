@@ -143,6 +143,9 @@ export class EventService {
               user: true,
             },
           },
+          additionals: {
+            where:{ uuid_event: uuid_event }
+          }
         },
       })
       .then((callBackEvent) => {
@@ -163,7 +166,11 @@ export class EventService {
                 return {
                   uuid_user: participant.uuid_user,
                   name: participant.user.name,
-                  user_level: participant.user_level
+                  user_level: participant.user_level,
+                  drink: callBackEvent.additionals.find(cc => cc.uuid_user == participant.uuid_user ).drink,
+                  food: callBackEvent.additionals.find(cc => cc.uuid_user == participant.uuid_user ).food,
+                  hard_drink: callBackEvent.additionals.find(cc => cc.uuid_user == participant.uuid_user ).hard_drink,
+                  pastime: callBackEvent.additionals.find(cc => cc.uuid_user == participant.uuid_user ).pastime,
                 };
               }
               return null;

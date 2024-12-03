@@ -17,6 +17,10 @@ export interface Participant {
   uuid_user: string;
   name: string;
   user_level?: 'owner' | 'guest' | 'manager';
+  drink?: boolean,
+  food?: boolean,
+  hard_drink?: boolean,
+  pastime?: boolean,
 }
 
 export interface Spent {
